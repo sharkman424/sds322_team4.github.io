@@ -326,16 +326,16 @@ $(document).ready(function () {
 <h2>III. Exploratory Analysis</h2>
 <p>To visualize our data we created violin plots to show the distribution of the explanatory variables when compared to the heating (See Fig1.) and cooling load (Fig2.) since it not only gives us a boxplot, but also shows us the density of the different data points. 
 <p float="middle">
-  <img src="Exploratory analysis 1.png" "width:20%; height=20%;">
+  <img src="Exploratory analysis 1.png" "width:10%; height=10%;">
   </p>
   <p float ="middle">
-    <img src="cooling.PNG" style="width:20%; height=20%;">
+    <img src="cooling.PNG" style="width:40%; height=40%;">
   </p>  
 <p>From the graphs we can observe that the heating load seems to follow a step function when analyzed against relative compactness and surface area. For relative compactness there seems to be a threshold (of around 0.74), that when surpassed, triggers the heating load to increase. For the surface area, we can infer that when a threshold of around 662 is surpassed, the heating load diminishes.</p>
 <p>We also observe that overall height seems to have a great impact on the heating load. A higher height seems to be related to a high heating load. However, since there are only two levels for the overall height, it is difficult to interpret any real correlation. Orientation, glazing area and glazing area distribution seem to have little or no effect on the heating load. Finally, we infer that the same conclusions can be applied to the cooling load as its graphs are the same as the heating load.</p>
 <p>To explore this relationship further, we remove the categorical variables- the orientation and the glazing area distribution. Then, we compute the correlation matrix for the variables (See Fig3.).</p>
 <p>
-  <img src="cormat.PNG" style="width:20%; height=20%;">
+  <img src="cormat.PNG" style="width:40%; height=40%;">
 </p>
 <p>We observe that the variables that seem to be highly positively correlated to heating and cooling load are overall height, and relative compactness. On the other hand, roof area and surface area seem to be highly negatively correlated to heating and cooling load. This leads us to our first hypothesis- Relative compactness, surface area, roof area, and overall height appear to be important for the prediction of heating and cooling loads.</p>
 <p>Upon further inspecting the graphs we come up with our second hypothesis, The underlying relationship between the explanatory and the response variables does not appear to be linear. This indicates that any functional relationship of the explanatory variables and the response variables is not trivial. This also implies that classical models such as linear regression may fail to find an accurate mapping of the explanatory variables to the response variables. To find further evidence for our hypothesis, we create a predictive model.</p>
@@ -350,20 +350,20 @@ $(document).ready(function () {
 <h2>V. Discussion</h2>
 <p>The testing MSE obtained with the linear model was of 9.3 for the heating load and 9.8 for the cooling load. The values seemed relatively low, and when plotting the predicted vs actual values (see Fig. 4) a diagonal line could be visualized, which could initially indicate that the linear regression is a good fit to our data. However, the coefficients of the model were also studied and it was discovered that they had unreasonably high orders of magnitude (Fig. 5), making it obvious that the linear regression model does not capture the relationship between the explanatory and response variables.</p>
 <p>
-  <img src="linreg.PNG" style="width:20%; height=20%;">
-  <img src="coeff.PNG" style="width:20%; height=20%;">
+  <img src="linreg.PNG" style="width:40%; height=40%;">
+  <img src="coeff.PNG" style="width:40%; height=40%;">
 </p>
 <p>Later on an SVR regression model was fitted to the training data. However, this resulted in a testing MSE of 40.2 and 32.7 for the heating and cooling load respectively, and there is an obvious pattern when plotting the actual vs predicted values for the response variables (Fig. 6). We can therefore conclude that the SVR regression model is not a good fit to our data.</p>
   <p float="middle">
-    <img src="svr.PNG" style="width:20%; height=20%;">
+    <img src="svr.PNG" style="width:40%; height=40%;">
   </p>  
 <p>Finally a Random Forest regression model was fitted and the testing MSE decreased significantly to 0.3 and 4.0 for the heating and cooling load, and the plot of actual vs predicted values is very close to a diagonal line (Fig. 7). We can see that although both are very accurate, the heating load one seems to be more, which is something that might be worth further exploring.</p>
   <p float="middle">
-    <img src="rf.PNG" style="width:20%; height=20%;">
+    <img src="rf.PNG" style="width:40%; height=40%;">
   </p>  
 <p>Not unexpectedly, out of the three models analyzed, this is the one that best fits the data and shows consistently superior performance, which confirms our initial hypothesis that the relationships between the explanatory and response variables are quite complicated to be adequately captured by a linear model. Now after having selected the best one, a SHAP analysis was carried out and the results are shown in (Fig. 8).</p>
   <p float="middle">
-    <img src="shap.PNG" style="width:20%; height=20%;">
+    <img src="shap.PNG" style="width:40%; height=40%;">
   </p>  
 <p>For the heating load, we can observe that the most important factors are relative compactness, surface area and glazing area. Heating load seems to have a linear behavior according to glazing area (lower values of glazing area are associated with lower SHAP values), but a non-linear behavior according to surface area and relative compactness. For instance, for instance for the surface area we can see that average values generate the highest SHAP values. The analysis also suggests that neither roof nor overall height are important factors for the estimation of the heating load, variables we initially thought would be, following the exploratory analysis. Their apparent effect on the response variables might be explained by the high correlations that exist between the predictive variables.</p>
 <p>In the case of cooling load, the most important factors seem to be overall height, relative compactness, glazing area and surface area. It would be interesting to analyze why overall height seems to have a significantly higher effect on cooling load than on heating load. Roof area doesn’t seem to be important, which is explained by the same reason outlined above. Similarly, the cooling load seems to behave linearly according to the glazing area. However, the behavior is more complex according to relative compactness and surface area. Finally, higher overall height values are related to a higher cooling load; however, with only two levels contemplated in the analysis, it is difficult to make any more inferences about the effect of this variable.</p>
