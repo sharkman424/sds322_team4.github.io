@@ -325,8 +325,7 @@ $(document).ready(function () {
 <div id="iii.-exploratory-analysis" class="section level2">
 <h2>III. Exploratory Analysis</h2>
 <p>To visualize our data we created violin plots to show the distribution of the explanatory variables when compared to the heating (See Fig1.) and cooling load (Fig2.) since it not only gives us a boxplot, but also shows us the density of the different data points. 
-<p><img src="Exploratory analysis 1.png" style=width:50%></p>
-<p><br></p>
+<p><img src="SHAP.png" style=width:50%></p>
 <p>From the graphs we can observe that the heating load seems to follow a step function when analyzed against relative compactness and surface area. For relative compactness there seems to be a threshold (of around 0.74), that when surpassed, triggers the heating load to increase. For the surface area, we can infer that when a threshold of around 662 is surpassed, the heating load diminishes.</p>
 <p>We also observe that overall height seems to have a great impact on the heating load. A higher height seems to be related to a high heating load. However, since there are only two levels for the overall height, it is difficult to interpret any real correlation. Orientation, glazing area and glazing area distribution seem to have little or no effect on the heating load. Finally, we infer that the same conclusions can be applied to the cooling load as its graphs are the same as the heating load.</p>
 <p>To explore this relationship further, we remove the categorical variables- the orientation and the glazing area distribution. Then, we compute the correlation matrix for the variables (See Fig3.).</p>
